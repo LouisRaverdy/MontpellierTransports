@@ -1,0 +1,336 @@
+<link rel="stylesheet" href="../../style/fonts.css">
+<div class="top-page" id="top-page">
+    <div class="top-page-text-container">
+        <div class="top-page-text">Tam | Temps Réel</div>
+    </div>
+</div>
+<div class="middle-page" id="middle-page">
+    <div id="search-bar" class="search-bar">
+        <img id="search-image" class="search-image" draggable="false" src="../../src/search.png">
+        <div class="rect-child-ligne" id="rect-child-ligne">
+            <div class="rect-child-ligne-text" id="rect-child-ligne-text">1</div>
+        </div>
+        <input id="search-entry" class="search-entry" oninput="onInputSearch(this.value)" type="search" placeholder="Entrez une station ou une ligne">
+        <div class="separator-bar" id="separator-bar"></div>
+        <div id="result-list" class="result-list"></div>
+    </div>
+    <button class="search-button" id="search-button" onclick="press()">
+        <img class="search-button-image" src="../../src/right-arrow.png">
+    </button>
+</div>
+<script src="../../script/realtime/realtime.js"></script>
+<style>
+    * {
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+        user-select: none;
+    }
+
+    .top-page {
+        width: 100%;
+        height: 270px;
+        background-image: url('../../src/HeaderRealtime.jpeg');
+        background-size: 100%;
+        background-position: center;
+        position: relative;
+        transition: opacity 0.7s;
+    }
+
+    .top-page.hidden{
+        opacity: 0;
+    }
+
+    .top-page-text-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, calc(-50% - 0.5px));
+        box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(20px);
+        background-color: rgba(126, 126, 126, 0.1);
+        padding: 20px 80px;
+        border-radius: 20px;
+    }
+    
+    .top-page-text {
+        color: white;
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 45px;
+        white-space: nowrap;
+    }
+
+    .middle-page {
+        position: relative;
+        margin-top: 11%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        width: 480px;
+        height: 50px;
+        display: flex;
+    }
+
+    .search-bar {
+        background-color: white;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+        align-content: flex-start;
+        border-radius: 20px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+        width: 420px;
+        height: 100%;
+        transition: height 0.4s;
+        overflow: hidden;
+    }
+
+    .search-bar.expand {
+        height: 190px;
+    }
+
+    .search-image {
+        height: 50px;
+        width: 30px;
+        margin-left: 20px;
+        object-fit: contain;
+    }
+
+    .search-entry {
+        outline: none;
+        border: 0; 
+        font-family: "Inter";
+        font-size: 20px;
+        font-weight: 500;
+        padding-left: 15px;
+        width: 365px;
+        height: 50px;
+    }
+
+    .search-entry::-webkit-search-cancel-button {
+        position: relative;
+        right: 10px;
+    }
+
+    .separator-bar {
+        background-color: rgb(44, 44, 44);
+        width: 0%;
+        height: 2px;
+        transition: 0.25s ease-out;
+    }
+
+    .separator-bar.expand {
+        width: 100%;
+    }
+
+    .result-list {
+        transition: 0.5s;
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .result-list.expand {
+        height: calc(100% - 52px);
+    }
+
+    .result-list::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .result-list::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .result-list::-webkit-scrollbar-thumb {
+        background: black;
+        border-radius: 10px;
+    }
+
+    .child-result {
+        width: 100%;
+        height: 45px;
+        background-color: white;
+        border: 0;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+    }
+
+    .child-result:hover {
+        background-color: rgb(157, 185, 207);
+    }
+
+    .child-result-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .img-child-result {
+        height: 100%;
+        width: 27px;
+        margin-left: 20px;
+        object-fit: contain;
+    }
+
+    .text-child-result {
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 16px;
+        text-align: left;
+        height: 100%;
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .rect-child-ligne {
+        display: none;
+        position: absolute;
+        margin-top: 11px;
+        width: 30px;
+        height: 30px;
+        border-radius: 7px;
+        margin-left: 123px;
+        pointer-events:none;
+    }
+
+    .rect-child-ligne-long {
+        min-width: 30px;
+        width: auto !important;
+    }
+
+    .rect-child-ligne.visible {
+        display: block !important;
+    }
+
+    .rect-child-ligne-text {
+        margin-top: 3px;
+        font-family: "Inter";
+        font-weight: 700;
+        color: white;
+        font-size: 18px;
+        letter-spacing: -1.5px;
+        padding-top: 1px;
+        margin-left: -1px;
+        text-align: center;
+    }
+
+    .rect-child-ligne-text-long {
+        padding-left: 5px;
+        padding-right: 5px;
+        letter-spacing: normal !important;
+    }
+
+    .rect-child-result {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        margin-left: 5px;
+    }
+
+    .rect-child-result-long {
+        min-width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        margin-left: 5px;
+    }
+
+    .rect-child-result-text {
+        margin-top: 3px;
+        font-family: "Inter";
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: -1.5px;
+        padding-top: 1px;
+        margin-left: -2px;
+        text-align: center;
+    }
+
+    .rect-child-result-text-long {
+        margin-top: 3px;
+        font-family: "Inter";
+        font-weight: 700;
+        font-size: 18px;
+        padding-top: 1px;
+        padding-left: 6px;
+        padding-right: 5px;
+        margin-left: -1px;
+        text-align: center;
+    }
+
+    .stations-lignes {
+        margin-left: auto;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .station-ligne-rect {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        margin-left: 5px;
+    }
+
+    .station-ligne-rect-long {
+        min-width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        margin-left: 5px;
+    }
+
+    .station-ligne-rect-text {
+        margin-top: 3px;
+        font-family: "Inter";
+        font-weight: 600;
+        color: white;
+        font-size: 18px;
+        letter-spacing: -1.5px;
+        padding-top: 1px;
+        margin-left: -1px;
+        text-align: center;
+    }
+
+    .station-ligne-rect-text-long {
+        margin-top: 3px;
+        font-family: "Inter";
+        width: max-content;
+        font-weight: 600;
+        color: white;
+        font-size: 18px;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-left: -1px;
+        text-align: center;
+    }
+
+    .search-button {
+        cursor: pointer;
+        height: 100%;
+        width: 50px;
+        display: inline;
+        position: absolute;
+        right: 0;
+        border: 0;
+        background-color: #128be8;
+        -webkit-box-shadow:0px 0px 25px 6px rgba(18,139,232,0.5);
+        -moz-box-shadow: 0px 0px 25px 6px rgba(18,139,232,0.5);
+        box-shadow: 0px 0px 25px 6px rgba(18,139,232,0.5);
+        border-radius: 20px;
+        transition: scale 0.3s ease-out, box-shadow 0.3s ease-out;
+    }
+
+    .search-button:hover {
+        -webkit-box-shadow:0px 0px 41px 15px rgba(18,139,232,0.5);
+        -moz-box-shadow: 0px 0px 41px 15px rgba(18,139,232,0.5);
+        box-shadow: 0px 0px 41px 15px rgba(18,139,232,0.5);
+        scale: 108%;
+    }
+
+    .search-button-image {
+        height: 50%;
+    }
+</style>

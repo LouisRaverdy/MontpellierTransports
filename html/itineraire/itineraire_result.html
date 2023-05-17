@@ -1,0 +1,308 @@
+<link rel="stylesheet" href="../../style/fonts.css">
+<div class="page">
+    <div class="top-page">
+        <div class="horizontal-container">
+            <button class="top-page-back-button" onclick="backButton()">
+                <svg width="237" height="171" viewBox="0 0 237 171" fill="currentColor" class="top-page-back-button-image">
+                    <path d="M225 97C231.351 97 236.5 91.8513 236.5 85.5C236.5 79.1487 231.351 74 225 74V97ZM3.86827 77.3683C-0.622757 81.8593 -0.622757 89.1407 3.86827 93.6317L77.0538 166.817C81.5449 171.308 88.8263 171.308 93.3173 166.817C97.8083 162.326 97.8083 155.045 93.3173 150.554L28.2635 85.5L93.3173 20.4462C97.8083 15.9551 97.8083 8.67375 93.3173 4.18272C88.8263 -0.308309 81.5449 -0.308309 77.0538 4.18272L3.86827 77.3683ZM225 74H12V97H225V74Z" fill="currentColor"/>
+                </svg>
+            </button>
+            <div class="vertical-container top-page-container">
+                <div class="top-page-text">Itinéraire</div>
+                <div class="top-page-text-travel" id="top-page-text-travel">Rondelet → Loup Paillas</div>
+            </div>
+            <div class="top-page-sort">
+                <div class="top-page-sort-text">Trier par :</div>
+                <select class="top-page-sort-selection" id="top-page-dirction-selection" onchange="sortBy(this)">
+                    <option value="0">Temps de trajet</option>
+                    <option value="1">Heure de départ</option>
+                    <option value="1">Heure d'arivée</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="result-page" id="result-page">
+        <button class="result-child horizontal-container">
+            <div class="result-child-times vertical-container">
+                <div class="result-child-time">20h32</div>
+                <div class="result-child-time">20h53</div>
+            </div>
+            <div class="result-child-stations vertical-container">
+                <div class="result-child-station">Rondelet</div>
+                <div class="result-child-station">Loup Paillas</div>
+            </div>
+            <div class="result-child-separator"></div>
+            <div class="result-child-travel vertical-container">
+                <div class="result-child-travel-preview horizontal-container">
+                    <div class='ligne-rect' style='background-color: #EF7D00'>
+                        <div class='ligne-rect-text' style="color: white">2</div>
+                    </div>
+                    <div class="result-child-step"></div>
+                    <div class='ligne-rect-long' style='background-color: #005AA1'>
+                        <div class='ligne-rect-text-long' style="color: white">Navette Gare</div>
+                    </div>
+                </div>
+                <div class="result-child-travel-time horizontal-container">
+                    <img class="result-child-travel-time-img" src="../../src/chrono.png">
+                    <div class="result-child-travel-time-text">21 min.</div>
+                </div>
+            </div>
+        </button>
+    </div>
+</div>
+<script src="../../script/itineraire/itineraire_result.js"></script>
+<style>
+
+     * {
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+        user-select: none;
+    }
+
+    .top-page {
+        margin-top: 25px;
+        margin-left: 5px;
+        height: 60px;
+    }
+
+    .horizontal-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .top-page-back-button {
+        margin-left: 30px;
+        cursor: pointer;
+        height: 35px;
+        border: 0;
+        outline: none;
+        overflow: visible;
+        border-radius: 25px;
+        background-color: transparent;
+        transition: background-color 0.7s;
+    }
+
+    .top-page-back-button-image {
+        width: 75%;
+        height: 75%;
+    }
+
+    svg {
+        color: rgb(var(--text-color));
+        transition: color 0.7s;
+    }
+
+    .vertical-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .top-page-container {
+        margin-left: 30px;
+    }
+
+    .top-page-text {
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: 31px;
+    }
+
+    .top-page-text-travel {
+        font-family: 'Inter';
+        font-weight: 500;
+        font-size: 18px;
+    }
+
+    .top-page-sort {
+        height: 100%;
+        margin-top: 0px;
+        margin-left: auto;
+        margin-right: 30px;
+        align-self: center;
+    }
+
+    select {
+        appearance: none;
+        background: transparent;
+        background-image: url('../../src/dropdown.svg');
+        background-repeat: no-repeat;
+        background-position-x: calc(100% - 10px);
+        background-position-y: 50%;
+        border: 1px solid #dfdfdf;
+        margin-right: 2rem;
+        padding-right: 2rem;
+    }
+
+    .top-page-sort-text {
+        font-family: "Inter";
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .top-page-sort-selection {
+        margin-top: 4px;
+        font-family: "Inter";
+        font-weight: 400;
+        font-size: 16;
+        outline: 0;
+        background-color: #EAEAEA;
+        border: none;
+        border-radius: 5px;
+        height: 28;
+        padding-left: 8px;
+        min-width: 150px;
+        max-width: 330px;
+    }
+
+    .result-page {
+        margin: 40px 40px 0px;
+        height: calc(100% - 125px);
+        width: calc(100% - 80px);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .result-page::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    .result-page::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .result-page::-webkit-scrollbar-thumb {
+        background: black;
+        border-radius: 10px;
+    }
+
+    .result-child {
+        width: calc(100% - 10px);
+        height: 95px;
+        margin-bottom: 25px;
+        margin-right: 10px;
+        background-color: #F3F3F8;
+        border-radius: 15px;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .result-child-times {
+        margin-left: 30px;
+        width: 60px;
+        height: 50%;
+        justify-content: space-between;
+    }
+
+    .result-child-time {
+        width: 100%;
+        text-align: center;
+        font-family: 'Inter';
+        font-weight: 600;
+        font-size: 17px;
+    }
+
+    .result-child-stations {
+        margin-left: 25px;
+        min-width: 120px;
+        height: 50%;
+        justify-content: space-between;
+    }
+
+    .result-child-station {
+        width: 100%;
+        text-align: left;
+        font-family: 'Inter';
+        font-weight: 500;
+        font-size: 17px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .result-child-separator {
+        background-color: black;
+        width: 2px;
+        height: 53%;
+    }
+
+    .result-child-travel {
+        margin-left: 20px;
+        height: 60%;
+        width: calc(100% - 252px);
+    }
+
+    .result-child-travel-preview {
+        height: 50%;
+        width: 100%;
+    }
+
+    .result-child-step {
+        height: 100%;
+        min-width: 20px;
+        background-image: url('../../src/arrowRight.png');
+        background-size: 8px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .ligne-rect {
+        min-width: 28px;
+        height: 28px;
+        border-radius: 8px;
+    }
+
+    .ligne-rect-long {
+        min-width: 28px;
+        height: 28px;
+        border-radius: 8px;
+    }
+
+    .ligne-rect-text {
+        margin-top: 3px;
+        font-family: "Inter";
+        font-weight: 600;
+        color: white;
+        font-size: 18px;
+        letter-spacing: -1.5px;
+        margin-left: -1px;
+        text-align: center;
+    }
+
+    .ligne-rect-text-long {
+        margin-top: 3px;
+        font-family: "Inter";
+        width: max-content;
+        font-weight: 600;
+        color: white;
+        font-size: 18px;
+        padding-left: 7px;
+        padding-right: 5px;
+        margin-left: -1px;
+        text-align: center;
+    }
+
+    .result-child-travel-time {
+        height: 50%;
+        width: 100%;
+        align-items: center;
+    }
+
+    .result-child-travel-time-img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .result-child-travel-time-text {
+        margin-left: 6px;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 15px;
+    }
+
+    
+</style>

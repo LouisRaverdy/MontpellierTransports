@@ -1,0 +1,578 @@
+<link rel="stylesheet" href="../../style/fonts.css">
+<div class="top-page">
+    <div class="top-page-container" id="top-page-container">
+        <button class="top-page-back-button" onclick="backButton()">
+            <svg width="237" height="171" viewBox="0 0 237 171" fill="currentColor" class="top-page-back-button-image">
+                <path d="M225 97C231.351 97 236.5 91.8513 236.5 85.5C236.5 79.1487 231.351 74 225 74V97ZM3.86827 77.3683C-0.622757 81.8593 -0.622757 89.1407 3.86827 93.6317L77.0538 166.817C81.5449 171.308 88.8263 171.308 93.3173 166.817C97.8083 162.326 97.8083 155.045 93.3173 150.554L28.2635 85.5L93.3173 20.4462C97.8083 15.9551 97.8083 8.67375 93.3173 4.18272C88.8263 -0.308309 81.5449 -0.308309 77.0538 4.18272L3.86827 77.3683ZM225 74H12V97H225V74Z" fill="currentColor"/>
+            </svg>
+        </button>
+        <div class="top-page-ligne-conatainer">
+            <div class="top-page-ligne-text">Ligne</div>
+            <div class="top-page-ligne-rect" id="top-page-ligne-rect">
+                <div class="top-page-ligne-rect-text" id="top-page-ligne-rect-text">2</div>
+            </div>
+        </div>
+    </div>
+    <div class="top-page-direction">
+        <div class="top-page-direction-text">Direction vers :</div>
+        <select class="top-page-dirction-selection" id="top-page-dirction-selection" onchange="directionChanged(this)">
+            <option value="0">Saint-Jean de Védas Centre / Sabines</option>
+        </select>
+    </div>
+</div>
+<div class="page-container">
+    <div class="stations-container">
+        <div class="stations-text">Stations</div>
+        <div class="stations-spacer-border"></div>
+        <div class="stations-list" id="stations-list"></div>
+    </div>
+    <div class="station-info-container">
+        <div class="station-info-text-container">
+            <div class="stations-info-text" id="stations-info-text">Saint Jean de Vedas</div>
+        </div>
+        <div class="station-info-spacer-border"></div>
+        <div class="station-info-next-passages">Prochains passages</div>
+        <div class="station-info-passages-container" id="station-info-passages-container">
+            <div class="station-info-cell">
+                <div class="station-info-cell-direction" id="station-info-cell-direction-aller">• Vers Notre Dame de Sablassou :</div>
+                <div class="station-info-cell-temps-container">
+                    <div class="station-info-cell-temps">
+                        <div class="station-info-cell-temps-text" id="station-info-cell-temps-text-aller-0">12 min.</div>
+                    </div>
+                    <div class="station-info-cell-temps">
+                        <div class="station-info-cell-temps-text" id="station-info-cell-temps-text-aller-1">28 min.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="station-info-cell">
+                <div class="station-info-cell-direction" id="station-info-cell-direction-retour">• Vers Notre Dame de Sablassou :</div>
+                <div class="station-info-cell-temps-container">
+                    <div class="station-info-cell-temps">
+                        <div class="station-info-cell-temps-text" id="station-info-cell-temps-text-retour-0">12 min.</div>
+                    </div>
+                    <div class="station-info-cell-temps">
+                        <div class="station-info-cell-temps-text" id="station-info-cell-temps-text-retour-1">28 min.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="station-info-other-lignes">
+            <div class="station-info-other-lignes-text" id="station-info-other-lignes-text">Autres lignes désservies :</div>
+            <div class="station-info-other-lignes-container" id="station-info-other-lignes-container"></div>
+        </div>
+        <button class="station-info-see-more" onclick="showMore()">En savoir plus +</button>
+    </div>
+</div>
+<script src="../../script/loading.js"></script>
+<script src="../../script/realtime/ligne.js"></script>
+<style>
+
+    :root {
+        --color: 255, 255, 255;
+        --text-color: 255, 255, 255;
+    }
+
+    * {
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+        user-select: none;
+    }
+    
+    .top-page {
+        width: 100%;
+        height: 85px;
+        display: flex;
+    }
+
+    .top-page-container {
+        position: relative;
+        display: flex;
+        width: 400px;
+        height: 100%;
+        background-color: rgb(var(--color));
+        border-radius: 0 0 38px 0;
+        align-items: center;
+    }
+
+    .top-page-back-button {
+        position: absolute;
+        margin-left: 30px;
+        cursor: pointer;
+        height: 35px;
+        border: 0;
+        outline: none;
+        overflow: visible;
+        border-radius: 25px;
+        background-color: transparent;
+        transition: background-color 0.7s;
+    }
+
+    .top-page-back-button:hover {
+        background-color: rgb(var(--text-color));
+        mask-image: url('../../src/back-button.svg');
+    }
+
+    .top-page-back-button-image {
+        width: 75%;
+        height: 75%;
+    }
+
+    svg {
+        color: rgb(var(--text-color));
+        transition: color 0.7s;
+    }
+
+    .top-page-back-button:hover svg {
+        color: rgb(var(--color));
+    }
+
+    .top-page-ligne-conatainer {
+        justify-content: center;
+        display: flex;
+        width: 100%;
+        margin-left: 30px;
+    }
+    
+    .top-page-ligne-text {
+        font-family: "Inter";
+        font-size: 34px;
+        font-weight: 600;
+        color: rgb(var(--text-color));
+        align-self: center;
+    }
+
+    .top-page-ligne-rect {
+        margin-left: 7px;
+        margin-top: 4px;
+        background-color: rgb(var(--text-color));
+        width: 36px;
+        height: 36px;
+        border-radius: 11px;
+    }
+
+    .top-page-ligne-rect.long {
+        width: max-content !important;
+    }
+
+    .top-page-ligne-rect-text {
+        color: rgb(var(--color));
+        width: 100%;
+        height: 100%;
+        font-family: "Inter";
+        font-size: 27px;
+        font-weight: 700;
+        letter-spacing: -1.5px;
+        padding-top: 2px;
+        margin-left: -1px;
+        text-align: center;
+    }
+
+    .top-page-ligne-rect-text.long {
+        width: max-content !important;
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .top-page-direction {
+        height: 100%;
+        margin-top: 0px;
+        margin-left: 25px;
+    }
+
+    select {
+        appearance: none;
+        background: transparent;
+        background-image: url('../../src/dropdown.svg');
+        background-repeat: no-repeat;
+        background-position-x: calc(100% - 10px);
+        background-position-y: 50%;
+        border: 1px solid #dfdfdf;
+        margin-right: 2rem;
+        padding-right: 2rem;
+    }
+
+    .top-page-direction-text {
+        font-family: "Inter";
+        font-weight: 400;
+        font-size: 19px;
+        margin-top: 15px;
+    }
+
+    .top-page-dirction-selection {
+        margin-top: 4px;
+        font-family: "Inter";
+        font-weight: 400;
+        font-size: 16;
+        outline: 0;
+        background-color: #EAEAEA;
+        border: none;
+        border-radius: 5px;
+        height: 28;
+        padding-left: 8px;
+        min-width: 150px;
+        max-width: 330px;
+    }
+
+    .page-container {
+        width: 100%;
+        height: calc(100% - 90px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .stations-container {
+        margin-left: 30px;
+        width: 360px;
+        height: 80%;
+        background-color: #E7E7F3;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .stations-text {
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 30;
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+
+    .stations-spacer-border {
+        width: 309px;
+        height: 2px;
+        border-radius: 1px;
+        background-color: rgba(22, 22, 22, 0.123);
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .stations-list {
+        display: flex;
+        flex-flow: wrap;
+        justify-content: center;
+        align-content: flex-start;
+        overflow-y: auto;
+        height: calc(100% - 62px);
+    }
+
+    .stations-list::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .stations-list::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .stations-list::-webkit-scrollbar-thumb {
+        background: rgb(var(--color));
+        border-radius: 10px;
+    }
+
+    .station-cell {
+        height: 40px;
+        width: 90%;
+        display: inherit;
+        align-items: center;
+        position: relative;
+        outline: none;
+        background-color: transparent;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.4s;
+    }
+
+    .station-cell:hover {
+        background-color: rgba(var(--color), 0.2);
+    }
+
+    .station-cell.selected {
+        background-color: rgba(var(--color), 0.3);
+    }
+
+    .station-cell-route {
+        height: 100%;
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .station-cell-route-rect-top {
+        background-color: rgb(var(--color));
+        width: 7px;
+        height: 50%;
+        margin-top: 20px;
+    }
+
+    .station-cell-route-rect-mid {
+        background-color: rgb(var(--color));
+        width: 7px;
+        height: 100%;
+    }
+
+    .station-cell-route-rect-bot {
+        background-color: rgb(var(--color));
+        width: 7px;
+        height: 50%;
+        margin-bottom: 20px;
+    }
+
+    .station-cell-terminus-mask {
+        width: 25px;
+        height: 25px;
+        background-color: #E7E7F3;
+        border-radius: 13px;
+        position:absolute;
+        transition: background-color 0.4s;
+    }
+
+    .station-cell:hover .station-cell-terminus-mask {
+        background-color: rgba(var(--color), 0.1);
+    }
+
+    .station-cell-dot-mask {
+        width: 11px;
+        height: 11px;
+        background-color: rgb(var(--color));
+        border-radius: 13px;
+        position:absolute;
+    }
+
+    .station-cell-terminus {
+        width: 21px;
+        height: 21px;
+        background-color: white;
+        border-radius: 11px;
+        margin:2px;
+    }
+
+    .station-cell-dot {
+        width: 7px;
+        height: 7px;
+        background-color: white;
+        border-radius: 11px;
+        margin-top:2px;
+        margin-left:2px;
+    }
+
+    .station-cell-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 10px;
+        width: calc(100% - 40px);
+        justify-content: space-between;
+    }
+
+    .station-cell-name-dot {
+        font-family: "Inter";
+        font-size: 16px;
+        width: 200px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .station-cell-name-terminus {
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 16px;
+        width: 200px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .station-cell-time {
+        background-color: rgba(var(--color), 0.6);
+        border-radius: 8px;
+        height: 25px;
+        width: 69px;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .station-cell-time-text {
+        font-family: "Inter";
+        font-size: 16px;
+        color: rgb(var(--text-color));
+    }
+
+    .station-info-container {
+        position: relative;
+        margin-left: 30px;
+        width: 300px;
+        height: 80%;
+        background-color: #e7e7f360;
+        border-radius: 20px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    .station-info-text-container {
+        width: 100%;
+        height: 40px;
+        background-color: rgba(185, 209, 231, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .stations-info-text {
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 20px;
+        white-space: nowrap;
+    }
+
+    .station-info-spacer-border {
+        width: 100%;
+        height: 2px;
+        border-radius: 1px;
+        background-color: rgba(22, 22, 22, 0.123);
+    }
+
+    .station-info-next-passages {
+        font-family: "Inter";
+        font-weight: 480;
+        font-size: 18px;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .station-info-passages-container {
+        width: 100%;
+        margin-top: 15px;
+        max-height: 150px;
+    }
+
+    .station-info-cell {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .station-info-cell-direction {
+        font-family: "Inter";
+        font-weight: 450;
+        font-size: 15px;
+    }
+
+    .station-info-cell-temps-container {
+        width: 100%;
+        display: flex;   
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .station-info-cell-temps {
+        background-color: rgba(var(--color), 0.6);
+        border-radius: 8px;
+        height: 27px;
+        width: 69px;
+        margin-left: 20px;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .station-info-cell-temps-text {
+        font-family: "Inter";
+        font-size: 16px;
+        color: rgb(var(--text-color));
+    }
+
+    .station-info-other-lignes {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .station-info-other-lignes-text {
+        font-family: "Inter";
+        font-weight: 450;
+        font-size: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .station-info-other-lignes-container {
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+
+    .ligne-child {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: scale 0.3s ease-out;
+        margin-right: 8px;
+    }
+
+    .ligne-child-long {
+        min-width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: scale 0.3s ease-out;
+        margin-right: 8px;
+    }
+
+    .ligne-child:hover {
+        scale: 108%;
+    }
+
+    .ligne-child-long:hover {
+        scale: 108%;
+    }
+
+    .ligne-child-text {
+        font-family: "Inter";
+        font-weight: 700;
+        font-size: 18px;
+        color: white;
+    }
+
+    .ligne-child-text-long {
+        font-family: "Inter";
+        font-weight: 700;
+        font-size: 18px;
+        padding-left: 5px;
+        padding-right: 5px;
+        color: white;
+    }
+
+    .station-info-see-more {
+        position: absolute;
+        bottom: 20px;
+        background-color: rgb(var(--color));
+        border-radius: 10px;
+        font-family: "Inter";
+        font-size: 16px;
+        font-weight: 470;
+        color: rgb(var(--text-color));
+        width: 140px;
+        height: 32px;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        transition: scale 0.3s ease-out;
+    }
+
+    .station-info-see-more:hover {
+        scale: 108%;
+    }
+
+</style>

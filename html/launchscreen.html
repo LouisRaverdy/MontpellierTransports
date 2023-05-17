@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Starting...</title>
+</head>
+<div class="background-page">
+  <div class="text">Montpellier Transports</div>
+  <div id="text-error" class="text-error"></div>
+</div>
+<style>
+
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url("../src/font/Inter-Black.woff2?v=3.19") format("woff2"), url("../font/Inter-Black.woff?v=3.19") format("woff");
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("../src/font/Inter-SemiBold.woff2?v=3.19") format("woff2"), url("../font/Inter-SemiBold.woff?v=3.19") format("woff");
+  }
+
+  * {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    user-select: none;
+    overflow: hidden;
+  }
+
+  .background-page {
+    background-image: url('../src/launchbackground.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+    background: linear-gradient(115.06deg, rgba(0, 0, 0, 0.85) 7.28%, rgba(0, 0, 0, 0.55) 88.71%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-error {
+    width: 100%;
+    height: 0px;
+    margin-top: 7px;
+    text-align: center;
+    font-family: "Inter";
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0;
+    transition: height 0.4s, opacity 0.3s;
+  }
+
+  .text-error.visible {
+    opacity: 1 !important;
+    height: 20px;
+  }
+</style>
+<script>
+  const {ipcRenderer} = require('electron');
+
+  window.onload = function() {
+    setTimeout(function() {
+      setTimeout(function() {
+        ipcRenderer.send('asynchronous-message', 'check-for-updates')
+      }, 1000)
+      document.getElementById('text-error').classList.add('visible');
+      document.getElementById('text-error').innerText = "Vérification des mises à jour...";
+    }, 3000)
+  }
+  
+  ipcRenderer.on('message', function(event, text) {
+    if (text === "no-update") {
+      setTimeout(function() {
+      ipcRenderer.send('asynchronous-message', 'show-main-page')
+    }, 1000)
+    } else {
+      if (text != "") {
+        document.getElementById('text-error').classList.add('visible');
+        document.getElementById('text-error').innerText = text;
+      } else {
+        document.getElementById('text-error').classList.add('visible');
+        document.getElementById('text-error').innerText = "Erreur inconnue.";
+      }
+      
+    }
+  });
+</script>
+</html>

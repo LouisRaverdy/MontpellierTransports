@@ -1,0 +1,82 @@
+{
+  "name": "montpellier-transports",
+  "productName": "Montpellier Transports",
+  "version": "3.0.0",
+  "publisher": "Louis Raverdy",
+  "description": "A real-time app for transport at Montpellier",
+  "main": "./script/index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --publish never"
+  },
+  "build": {
+    "productName": "Montpellier Transports",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "LouisRaverdy",
+        "repo": "montpellier-transports"
+      }
+    ],
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "installerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerSidebar": "build/installerSidebar.bmp",
+      "uninstallerSidebar": "build/installerSidebar.bmp",
+      "language": "8202",
+      "shortcutName": "Montpellier Transports"
+    },
+    "win": {
+      "publish": [
+        "github"
+      ],
+      "target": "nsis"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 190,
+          "y": 190
+        },
+        {
+          "x": 350,
+          "y": 190,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "mac": {
+      "category": "public.app-category.travel",
+      "icon": "build/icon.icns",
+      "darkModeSupport": false,
+      "type": "distribution",
+      "target": "dmg"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LouisRaverdy/montpelliertransports.git"
+  },
+  "author": "Louis Raverdy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LouisRaverdy/montpelliertransports/issues"
+  },
+  "homepage": "https://github.com/LouisRaverdy/montpelliertransports#readme",
+  "devDependencies": {
+    "electron": "^22.2.0",
+    "electron-builder": "^23.6.0"
+  },
+  "dependencies": {
+    "custom-electron-titlebar": "^4.1.3",
+    "electron-is-dev": "^2.0.0",
+    "electron-updater": "^5.3.0",
+    "firebase": "^9.17.2",
+    "npm": "^9.4.1",
+    "yarn": "^1.22.19"
+  }
+}

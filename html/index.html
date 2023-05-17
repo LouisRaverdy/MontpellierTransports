@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Montpellier Transports</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="icon" href="../src/MT_Icon.ico">
+</head>
+<link rel="stylesheet" href="../style/fonts.css">
+<div class="drag-area"></div>
+<div class="main-page">
+    <div class="left-menu">
+        <img class="app-logo" draggable="false" style="width: 165px;"></img>
+        <div class="container-menu">
+            <button class="button-menu button-home" onclick="changePage('../html/home.html')">
+                <div class="img-button-menu-container">
+                    <div class="img-button-menu home"></div>
+                </div>
+                <div class="text-button-menu">Accueil</div>
+            </button>
+            <button class="button-menu button-realtime" onclick="changePage('../html/realtime/realtime.html')">
+                <div class="img-button-menu-container">
+                    <div class="img-button-menu realtime"></div>
+                </div>
+                <div class="text-button-menu">Temps Réel</div>
+            </button>
+            <button class="button-menu button-itinerary" onclick="changePage('../html/itineraire/itineraire.html')">
+                <div class="img-button-menu-container">
+                    <div class="img-button-menu itinerary"></div>
+                </div>
+                <div class="text-button-menu">Itinéraire</div>
+            </button>
+            <button class="button-menu button-map" onclick="changePage('../html/map.html')">
+                <div class="img-button-menu-container">
+                    <div class="img-button-menu map"></div>
+                </div>
+                <div class="text-button-menu">Carte</div>
+            </button>
+            <button class="button-menu button-about" onclick="changePage('../html/about.html')">
+                <div class="img-button-menu-container">
+                    <div class="img-button-menu about"></div>
+                </div>
+                <div class="text-button-menu">À Propos</div>
+            </button>
+        </div>
+    </div>
+    <div class="app-content" id="app-content">
+        <iframe src="home.html" class="page-child" id="page-child" allowTransparency="true" scrolling="yes" frameborder="0" width="100%" height="100%"></iframe>
+        <iframe src="loading/loading.html" class="loading-child" id="loading-child" style="opacity: 0;" allowTransparency="true" scrolling="yes" frameborder="0" width="100%" height="100%"></iframe>
+        <iframe src="error.html" class="error-child" id="error-child" allowTransparency="true" scrolling="yes" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+</div>
+<script src="../script/main.js"></script>
+<script src="../script/tools/export.js"></script>
+<style>
+    
+    * {
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        overflow: hidden;
+        user-select: none;
+    }
+
+    .drag-area {
+        background-color: #e7e7f3;
+        z-index: 3;
+        position: absolute;
+        height: 30px;
+        width: 100%;
+    }
+
+    .cet-titlebar > * {
+        font-family: "Inter";
+        font-weight: 600;
+    }
+    
+    .main-page {
+        width: 100%;
+        height: calc(100vh - 30px);
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        z-index: 10;
+    }
+    
+    .left-menu {
+        height: 100vh;
+        width: 350px;
+        background-color: #e7e7f3;
+    }
+    
+    .app-logo {
+        padding-left: 45px;
+        padding-top: 30px;
+        width: 165px;
+        height: 65px;
+        object-fit: contain;
+        content: url("../src/Logo_MT.png");
+    }
+    
+    .container-menu {
+        width: 240px;
+        margin-left: 50%;
+        margin-top: 65%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .button-menu {
+        width: 100%;
+        height: 45px;
+        margin-top: 20px;
+        border-radius: 18px;
+        background-color: #ffffff;
+        border: 0;
+        outline: none;
+        color: #121331;
+        font-family: "Inter";
+        font-weight: 510;
+        font-size: 18px;
+        transition: 0.4s;
+        cursor: pointer;
+        overflow: visible;
+    }
+    
+    .button-menu:hover {
+        background-color: #2F3C60;
+        color: white;
+    }
+
+    .img-button-menu-container {
+        float: left;
+        width: 45px;
+        height: 100%;
+        background-color: white;
+        border-radius: 17px;
+        scale: 102%;
+    }
+    
+    .img-button-menu {
+        width: 45px;
+        height: 100%;
+        background-size: 60%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .text-button-menu {
+        margin-top: 12px;
+    }
+
+    .home {
+        background-image: url("../src/static-home.png");
+    }
+    
+    .button-home:hover > .img-button-menu-container > .home {
+        background-image: url("../src/home.gif");
+        background-size: 83%; 
+    }
+    
+    .realtime {
+        background-image: url("../src/static-realtime.png");
+    }
+    
+    .button-realtime:hover > .img-button-menu-container > .realtime {
+        background-image: url("../src/realtime.gif");
+        background-size: 83%; 
+    }
+    
+    .itinerary {
+        background-image: url("../src/static-itinerary.png");
+    }
+    
+    .button-itinerary:hover > .img-button-menu-container > .itinerary {
+        background-image: url("../src/itinerary.gif");
+        background-size: 83%; 
+    }
+    
+    .map {
+        background-image: url("../src/static-maps.png");
+    }
+    
+    .button-map:hover > .img-button-menu-container > .map {
+        background-image: url("../src/maps.gif");
+        background-size: 83%; 
+    }
+    
+    .about {
+        background-image: url("../src/static-about.png");
+    }
+    
+    .button-about:hover > .img-button-menu-container > .about {
+        background-image: url("../src/about.gif");
+        background-size: 83%; 
+    }
+    
+    .app-content {
+        width: calc(100% - 300px);
+        height: 100%;
+        background-color: #e7e7f3;
+        position: relative;
+        overflow: visible;   
+    }
+    
+    .page-child {
+        width: 100%;
+        height: calc(100vh - 30px) !important;
+        border-radius: 40px 0 0 0;
+        background-color: white;
+        opacity: 1;
+        transition: transform 0.5s ease-out, opacity 0.2s ease-in, 0.5s;
+    }
+
+    .page-child.hidden {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    .loading-child {
+        position: absolute;
+        top: 50%;
+        left: 150%;
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 200px;
+        transition: opacity 0.4s ease-in, left 0.5s ease-in-out;
+    }
+
+    .loading-child.visible {
+        opacity: 1 !important;
+        left: 50%;
+    }
+
+    .error-child {
+        position: absolute;
+        top: -200px;
+        left: 50%;
+        width: 300px;
+        height: 80px;
+        transform: translate(-50%, -50%);
+        transition: all 1s;
+    } 
+
+    .error-child.visible {
+        top: 10%;
+    }
+    
+</style>
+</html>

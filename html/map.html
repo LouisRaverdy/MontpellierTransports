@@ -1,0 +1,141 @@
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css">
+<link rel="stylesheet" href="../style/fonts.css">
+<script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+<div id="map"></div>
+<style>
+
+    * {
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+    }
+
+    #map {
+        height: 100%;
+        width: 100%;
+    }
+
+    .mapboxgl-popup-content {
+        padding: 0;
+        width: 190px;
+    }
+
+    .vertical-container {
+        margin-top: 10px;
+        margin-left: 12px;
+        margin-right: 12px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .horizontal-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .station-name {
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .lignes-container {
+        margin-top: 6px;
+        margin-left: 3px;
+        margin-right: 3px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        row-gap: 3px;
+    }
+
+    .station-ligne-rect {
+        width: 24px;
+        height: 24px;
+        border-radius: 5px;
+        margin-right: 5px;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        transition: scale 0.3s ease-out;
+    }
+
+    .station-ligne-rect:hover {
+        scale: 108%;
+    }
+
+    .station-ligne-rect-long {
+        min-width: 24px;
+        height: 24px;
+        border-radius: 5px;
+        margin-right: 5px;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        transition: scale 0.3s ease-out;
+    }
+
+    .station-ligne-rect-long:hover {
+        scale: 108%;
+    }
+
+    .station-ligne-rect-text {
+        font-family: "Inter";
+        font-weight: 600;
+        color: white;
+        font-size: 13px;
+        letter-spacing: -1.5px;
+        margin-left: -1px;
+        text-align: center;
+    }
+
+    .station-ligne-rect-text-long {
+        font-family: "Inter";
+        width: max-content;
+        font-weight: 600;
+        color: white;
+        font-size: 13px;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-left: -1px;
+        text-align: center;
+    }
+
+    .ligne-name {
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: 16px;
+        margin-right: 5px;
+    }
+
+    .ligne-rect {
+        width: 24px;
+        height: 24px;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+
+    .ligne-rect-long {
+        min-width: 24px;
+        height: 24px;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+
+    .button-show-more {
+        border: 0;
+        outline: none;
+        background-color: #22408E;
+        border-radius: 10px;
+        height: 30px;
+        width: 100px;
+        color: #FFFFFF;
+        cursor: pointer;
+        margin-top: 8px;
+        margin-bottom: 10px;
+        font-family: 'Inter';
+        font-size: 13px;
+        align-self: center;
+    }
+
+</style>
+<script src="../script/map/map.js"></script>

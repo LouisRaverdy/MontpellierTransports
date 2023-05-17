@@ -1,0 +1,487 @@
+<link rel="stylesheet" href="../../style/fonts.css">
+<div class="top-page">
+    <div class="top-page-container" id="top-page-container">
+        <button class="top-page-back-button" onclick="backButton()">
+            <svg width="237" height="171" viewBox="0 0 237 171" fill="currentColor" class="top-page-back-button-image">
+                <path d="M225 97C231.351 97 236.5 91.8513 236.5 85.5C236.5 79.1487 231.351 74 225 74V97ZM3.86827 77.3683C-0.622757 81.8593 -0.622757 89.1407 3.86827 93.6317L77.0538 166.817C81.5449 171.308 88.8263 171.308 93.3173 166.817C97.8083 162.326 97.8083 155.045 93.3173 150.554L28.2635 85.5L93.3173 20.4462C97.8083 15.9551 97.8083 8.67375 93.3173 4.18272C88.8263 -0.308309 81.5449 -0.308309 77.0538 4.18272L3.86827 77.3683ZM225 74H12V97H225V74Z" fill="currentColor"/>
+            </svg>
+        </button>
+        <div class="top-page-station-conatainer">
+            <div class="top-page-station-text" id="top-page-station-text">Saint-Jean de Védas Centre</div>
+        </div>
+    </div>
+</div>
+<div class="page-container">
+    <div class="vertical-container">
+        <div class="lignes-container">
+            <div class="lignes-text">Lignes desservies :</div>
+            <div class="lignes-list" id="lignes-list">
+                <button class="ligne-child">
+                    <div class="ligne-child-text">21</div>
+                </button>
+                <button class="ligne-child">
+                    <div class="ligne-child-text">21</div>
+                </button>
+                <button class="ligne-child">
+                    <div class="ligne-child-text">21</div>
+                </button>
+                <button class="ligne-child">
+                    <div class="ligne-child-text">21</div>
+                </button>
+                <button class="ligne-child">
+                    <div class="ligne-child-text">21</div>
+                </button>
+                <button class="ligne-child">
+                    <div class="ligne-child-text">21</div>
+                </button>
+            </div>
+        </div>
+        <div class="station-info-container">
+            <div class="station-info-text">Informations</div>
+            <div class="station-info-spacer"></div>
+            <div class="station-info-next-passages-text">Prochains passages</div>
+        <div class="station-info-passages-container" id="station-info-passages-container">
+            <div class="station-info-cell">
+                <div class="station-info-cell-direction" id="station-info-cell-direction-aller">• Vers Notre Dame de Sablassou :</div>
+                <div class="station-info-cell-temps-container">
+                    <div class="station-info-cell-temps">
+                        <div class="station-info-cell-temps-text" id="station-info-cell-temps-text-aller-0">12 min.</div>
+                    </div>
+                    <div class="station-info-cell-temps">
+                        <div class="station-info-cell-temps-text" id="station-info-cell-temps-text-aller-1">28 min.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="station-info-cell">
+                <div class="station-info-cell-direction" id="station-info-cell-direction-retour">• Vers Notre Dame de Sablassou :</div>
+                <div class="station-info-cell-temps-container">
+                    <div class="station-info-cell-temps">
+                        <div class="station-info-cell-temps-text" id="station-info-cell-temps-text-retour-0">12 min.</div>
+                    </div>
+                    <div class="station-info-cell-temps">
+                        <div class="station-info-cell-temps-text" id="station-info-cell-temps-text-retour-1">28 min.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div> 
+    <div class="ligne-info-container">
+        <div class="ligne-info-text-container">
+            <div class="ligne-info-text">Détails de la ligne</div>
+        </div>
+        <div class="ligne-spacer-border"></div>
+        <div class="stations-list" id="stations-list"></div>
+    </div>
+</div>
+<script src="../../script/loading.js"></script>
+<script src="../../script/realtime/station.js"></script>
+<style>
+    
+    :root {
+        --selected-ligne: 230, 100, 30;
+        --text-selected-ligne: 230, 100, 30;
+    }
+
+    * {
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+        user-select: none;
+    }
+    
+    .top-page {
+        width: 100%;
+        height: 85px;
+        display: flex;
+    }
+
+    .top-page-container {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(var(--selected-ligne), 1);
+        transition: background-color 0.3s;
+        align-items: center;
+    }
+
+    .top-page-back-button {
+        position: absolute;
+        margin-left: 30px;
+        cursor: pointer;
+        height: 35px;
+        border: 0;
+        outline: none;
+        overflow: visible;
+        border-radius: 25px;
+        background-color: transparent;
+        transition: background-color 0.7s;
+    }
+
+    .top-page-back-button:hover {
+        background-color: white;
+        mask-image: url('../../src/back-button.svg');
+    }
+
+    .top-page-back-button-image {
+        width: 75%;
+        height: 75%;
+    }
+
+    svg {
+        color: rgb(var(--text-selected-ligne));
+        transition: color 0.7s;
+    }
+
+    .top-page-back-button:hover svg {
+        color: rgb(var(--selected-ligne));
+    }
+
+    .top-page-back-button:hover {
+        background-color: white;
+        mask-image: url('../../src/back-button.svg');
+    }
+
+    .top-page-station-conatainer {
+        justify-content: center;
+        display: flex;
+        width: 100%;
+    }
+    
+    .top-page-station-text {
+        font-family: "Inter";
+        font-size: 34px;
+        font-weight: 500;
+        color: rgb(var(--text-selected-ligne));
+        align-self: center;
+    }
+
+    .page-container {
+        width: 100%;
+        height: calc(100% - 90px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .vertical-container {
+        margin-left: 30px;
+        width: 360px;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .lignes-container {
+        background-color: #E7E7F3;
+        border-radius: 20px;
+        height: 100px;
+    }
+
+    .lignes-text {
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 18px;
+        margin-top: 10px;
+        margin-left: 15px;
+    }
+
+    .lignes-list {
+        margin-top: 8px;
+        margin-left: 13px;
+    }
+
+    .ligne-child {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        border: none;
+        transition: scale 0.3s ease-out;
+        margin-right: 8px;
+    }
+
+    .ligne-child-long {
+        min-width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        border: none;
+        transition: scale 0.3s ease-out;
+        margin-right: 8px;
+    }
+
+    .ligne-child:hover {
+        scale: 108%;
+    }
+
+    .ligne-child-long:hover {
+        scale: 108%;
+    }
+
+    .ligne-child.selected {
+        box-shadow: 0px 0px 0px 3px #343434;
+    }
+
+    .ligne-child-long.selected {
+        box-shadow: 0px 0px 0px 3px #343434;
+    }
+
+    .ligne-child-text {
+        font-family: "Inter";
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .ligne-child-text-long {
+        font-family: "Inter";
+        font-weight: 700;
+        font-size: 18px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .station-info-container {
+        width: 100%;
+        height: 80%;
+        margin-top: 30px;
+        background-color: #E7E7F3;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .station-info-text {
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 30;
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+
+    .station-info-spacer {
+        width: 100%;
+        height: 2px;
+        border-radius: 1px;
+        background-color: rgba(22, 22, 22, 0.123);
+    }
+
+    .station-info-passages-container {
+        width: 100%;
+        margin-top: 15px;
+        height: auto;
+    }
+
+    .station-info-cell {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .station-info-cell-direction {
+        font-family: "Inter";
+        font-weight: 450;
+        font-size: 15px;
+    }
+
+    .station-info-cell-temps-container {
+        width: 100%;
+        display: flex;   
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .station-info-cell-temps {
+        background-color: rgba(var(--selected-ligne), 0.6);
+        border-radius: 8px;
+        height: 27px;
+        width: 69px;
+        margin-left: 20px;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s;
+    }
+
+    .station-info-cell-temps-text {
+        font-family: "Inter";
+        font-size: 16px;
+        color: rgb(var(--text-selected-ligne));
+    }
+
+    .ligne-info-container {
+        position: relative;
+        margin-left: 30px;
+        width: 300px;
+        height: 80%;
+        background-color: #e7e7f360;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .ligne-info-text-container {
+        width: 100%;
+        height: 40px;
+        background-color: rgba(185, 209, 231, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ligne-info-text {
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .ligne-spacer-border {
+        width: 100%;
+        height: 2px;
+        border-radius: 1px;
+        background-color: rgba(22, 22, 22, 0.123);
+    }
+
+    .station-info-next-passages-text {
+        font-family: "Inter";
+        font-weight: 480;
+        font-size: 18px;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .stations-list {
+        display: flex;
+        flex-flow: wrap;
+        justify-content: center;
+        align-content: flex-start;
+        overflow-y: auto;
+        height: calc(100% - 40px);
+    }
+
+    .stations-list::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .stations-list::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .stations-list::-webkit-scrollbar-thumb {
+        background: rgb(var(--selected-ligne));
+        border-radius: 10px;
+    }
+
+    .station-cell {
+        height: 40px;
+        width: 95%;
+        display: inherit;
+        align-items: center;
+        position: relative;
+        outline: none;
+        background-color: transparent;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.4s;
+    }
+
+    .station-cell:hover {
+        background-color: rgba(var(--selected-ligne), 0.2);
+    }
+
+    .station-cell-route {
+        height: 100%;
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .station-cell-route-rect-top {
+        background-color: rgb(var(--selected-ligne));
+        width: 7px;
+        height: 50%;
+        margin-top: 20px;
+    }
+
+    .station-cell-route-rect-mid {
+        background-color: rgb(var(--selected-ligne));
+        width: 7px;
+        height: 100%;
+    }
+
+    .station-cell-route-rect-bot {
+        background-color: rgb(var(--selected-ligne));
+        width: 7px;
+        height: 50%;
+        margin-bottom: 20px;
+    }
+
+    .station-cell-terminus-mask {
+        width: 25px;
+        height: 25px;
+        background-color: #e7e7f360;
+        border-radius: 13px;
+        position:absolute;
+        transition: background-color 0.4s;
+    }
+
+    .station-cell:hover .station-cell-terminus-mask {
+        background-color: rgba(var(--selected-ligne), 0.1);
+    }
+
+    .station-cell-dot-mask {
+        width: 11px;
+        height: 11px;
+        background-color: rgb(var(--selected-ligne));
+        border-radius: 13px;
+        position:absolute;
+    }
+
+    .station-cell-terminus {
+        width: 21px;
+        height: 21px;
+        background-color: white;
+        border-radius: 11px;
+        margin:2px;
+    }
+
+    .station-cell-dot {
+        width: 7px;
+        height: 7px;
+        background-color: white;
+        border-radius: 11px;
+        margin-top:2px;
+        margin-left:2px;
+    }
+
+    .station-cell-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 10px;
+        width: calc(100% - 40px);
+        justify-content: space-between;
+    }
+
+    .station-cell-name-dot {
+        font-family: "Inter";
+        font-size: 16px;
+        width: 95%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .station-cell-name-terminus {
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 16px;
+        width: 95%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    } 
+
+</style>

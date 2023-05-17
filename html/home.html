@@ -1,0 +1,324 @@
+<link rel="stylesheet" href="../style/fonts.css">
+<div class="overlay">
+    <div class="foreground">
+        <div class="top-container">
+            <div class="welcome-container">
+                <div class="welcome-title">
+                    <div class="bonjour-text">Bonjour,</div>
+                    <div class="vous-text">vous.</div>
+                </div>
+                <div class="description-welcome">Où souhaitez-vous aller <div class="today-text">aujourd’hui</div> ?</div>
+            </div>
+            <div class="trafic-container">
+                <img class="trafic-img" src="../src/trafic.png" draggable="false">
+                <div class="trafic-text">Travaux annoncés sur les lignes : 1, 3 et 21.</div>
+            </div>
+        </div>
+        <div class="shortcut-container">
+            <button class="shortcut-button" onclick="changePage('../html/itineraire.html')">
+                <img class="shortcut-img" src="../src/shortcut.png">
+                <div class="shortcut-text">Rechercher un itinéraire</div>
+            </button>
+            <button class="shortcut-button" onclick="changePage('../html/realtime/realtime.html')">
+                <img class="shortcut-img" src="../src/station.png">
+                <div class="shortcut-text">Rechercher une station</div>
+            </button>
+        </div>
+        <div class="news-container">
+            <div class="news-text">Actualités :</div>
+            <div class="news-list">
+                <button class="news-child" onclick='openURL("https\:\/\/tram5-montpellier3m.fr/")'>
+                    <div class="news-child-img-container" style="background-color: #FFD4DB;">
+                        <img class="news-child-img" src="../src/news/ligne-5.png" style="width: 50%;">
+                    </div>
+                    <div class="news-child-text-container">
+                        <div class="news-child-title">La ligne 5 arrive !</div>
+                        <div class="news-child-description">Découvrez le nouveau design de la ligne 5.</div>
+                    </div>
+                </button>
+                <button class="news-child" onclick='openURL("https\:\/\/www.tam-voyages.com/")'>
+                    <div class="news-child-img-container" style="background-color: #EBFFA6;">
+                        <img class="news-child-img" src="../src/news/logo-tam.png" style="width: 75%;">
+                    </div>
+                    <div class="news-child-text-container">
+                        <div class="news-child-title">Nouvelle application TAM</div>
+                        <div class="news-child-description">Une toute nouvelle application juste pour vous !</div>
+                    </div>
+                </button>
+                <button class="news-child" onclick='openURL("https\:\/\/inforeseau.tam-voyages.com")'>
+                    <div class="news-child-img-container" style="background-color: #FFEAB2;">
+                        <img class="news-child-img" src="../src/news/travaux.png" style="width: 72%;">
+                    </div>
+                    <div class="news-child-text-container">
+                        <div class="news-child-title">Travaux en cours</div>
+                        <div class="news-child-description">Des travaux sont en cours sur les lignes 1, 2 3 et 4.</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="background">
+        <div class="background-buble one" id="background-buble-one"></div>
+        <div class="background-buble two" id="background-buble-two"></div>
+        <div class="background-buble three" id="background-buble-three"></div>
+    </div>
+</div>
+<style>
+
+    * {
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+        user-select: none;
+    }
+
+    .overlay {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .foreground {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .top-container {
+        display: flex;
+        justify-content: space-between;
+        width: calc(100% - 80px);
+        height: 75px;
+        margin-left: 40px;
+        margin-right: 40px;
+        margin-top: 35px;
+    }
+
+    .welcome-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .welcome-title {
+        display: flex;
+        align-items: baseline;
+    }
+
+    .bonjour-text {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 43px;
+        background: linear-gradient(100.43deg, #EDBC0E 0.23%, #00C092 76.48%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .vous-text {
+        margin-left: 5px;
+        font-family: 'Inter';
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 48px;
+    }
+
+    .description-welcome {
+        font-family: 'Inter';
+        font-weight: 500;
+        font-size: 20px;
+        display: flex;
+        width: max-content;
+    }
+
+    .today-text {
+        font-weight: 700;
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .trafic-container {
+        width: 230px;
+        height: 100%;
+        background: rgba(231, 231, 243, 0.5);
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+        border-radius: 14px;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .trafic-img {
+        position: absolute;
+        width: 36px;
+        height: 36px;
+        top: -18px;
+        right: -18px;
+    }
+
+    .trafic-text {
+        font-family: 'Inter';
+        font-weight: 500;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .shortcut-container {
+        display: flex;
+        justify-content: space-between;
+        width: calc(100% - 120px);
+        height: 75px;
+        margin-left: 60px;
+        margin-right: 60px;
+        margin-top: 35px;
+    }
+
+    .shortcut-button {
+        width: 289px;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+        outline: none;
+        background: rgba(233, 255, 254, 0.53);
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s, transform 0.3s;
+        border-radius: 11px;
+    }
+
+    .shortcut-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0px 4px 19px rgba(0, 29, 41, 0.3);
+    }
+
+    .shortcut-img {
+        width: 30px;
+        height: 30px;
+        margin-left: 15px;
+    }
+
+    .shortcut-text {
+        font-family: 'Inter';
+        margin-left: 22px;
+        font-weight: 500;
+        font-size: 17px;
+    }
+
+    .news-container {
+        width: 66%;
+        height: calc(100% - 260px);
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    .news-text {
+        font-family: 'Inter';
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .news-list {
+        display: flex;
+        height: -webkit-fill-available;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        margin-left: 30px;
+    }
+
+    .news-child {
+        width: 100%;
+        height: 65px;
+        background: rgba(255, 255, 255, 0.45);
+        border-radius: 16px;
+        border: 0;
+        outline: none;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+        cursor: pointer;
+        display: flex;
+        transition: box-shadow 0.3s, transform 0.3s;
+        overflow: hidden;
+    }
+
+    .news-child:hover {
+        transform: translateY(-2px);
+        box-shadow: 0px 4px 19px rgba(0, 29, 41, 0.3);
+    }
+
+    .news-child-img-container {
+        height: 100%;
+        width: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .news-child-img {
+        object-fit: cover;
+    }
+
+    .news-child-text-container {
+        height: 100%;
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .news-child-title {
+        font-family: "Inter";
+        font-weight: 700;
+        font-size: 17;
+    }
+
+    .news-child-description {
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 15;
+        margin-top: 2px;
+    }
+
+    .background-buble {
+        filter: blur(30px);
+        border-radius: 50%;
+        position: absolute;
+    }
+
+    .one {
+        width: 280px;
+        height: 280px;
+        right: -90px;
+        top: 30px;
+        background: linear-gradient(216.29deg, #7200D4 13.04%, #D10DD3 86.13%);
+    }
+
+    .two {
+        width: 110px;
+        height: 110px;
+        right: 150px;
+        top: 290px;
+        background: linear-gradient(215.99deg, #E95D0F 7.55%, #FF8A48 86.99%);
+    }
+
+    .three {
+        width: 195px;
+        height: 195px;
+        right: 40px;
+        top: 450px;
+        background: linear-gradient(97.77deg, #97BF0D 4.7%, #CFFF2C 92.91%);
+    }
+</style>
+<script src="../script/home.js"></script>
