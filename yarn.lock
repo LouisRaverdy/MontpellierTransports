@@ -1447,9 +1447,9 @@ cssesc@^3.0.0:
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
 custom-electron-titlebar@^4.1.3:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/custom-electron-titlebar/-/custom-electron-titlebar-4.2.2.tgz#24036cf057b4172200d8cd8b453d8e3452b27158"
-  integrity sha512-X711ies76oEYfpFhj6Dw5hb4JGrULpIF9MQ9gz2wb2d3JstVJx6l5GMiOYdhICq5PyY/PHMjXWcrW/prFwd1sg==
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/custom-electron-titlebar/-/custom-electron-titlebar-4.2.3.tgz#4e10b091e4baafc775ceb55d6461e2af36d09234"
+  integrity sha512-nWzTL13vwac0R4kyOdMbTp5X/Mq7akhWc7IoojFyXwjovtfeNca5flf2ftl71mwfV2DhZr5qMoretLfNNq1YDg==
 
 debug@4, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.3, debug@^4.3.4:
   version "4.3.4"
