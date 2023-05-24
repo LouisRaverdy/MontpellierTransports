@@ -18,6 +18,8 @@ async function MainFinder(info){
 	let tree = new Tree(info.start_station, info.destination_station);
 	let bestWay = tree.searching();
 
+	console.log(info)
+
 	let alreadyFetched = {};
 
 	let finalWays = [];
@@ -28,10 +30,19 @@ async function MainFinder(info){
 		let AllLines = [];
 		let current_way = bestWay[way][1];
 		while (current_way != undefined){
-			AllStops.unshift(current_way);
-			if (current_way.lineFrom != undefined){
-				AllLines.unshift(current_way.lineFrom);
+			if (info["isArrivalDepart"]){
+				AllStops.unshift(current_way);
+				if (current_way.lineFrom != undefined){
+					AllLines.unshift(current_way.lineFrom);
+				}
 			}
+			else{
+				AllStops.push(current_way);
+				if (current_way.lineFrom != undefined){
+					AllLines.push(current_way.lineFrom);
+				}
+			}
+			
 			current_way = current_way.parent;
 		}
 
@@ -41,6 +52,8 @@ async function MainFinder(info){
 			AllSteps.push(AllStops[AllStops.indexOf(allStopOfThisLine[0]) - 1])
 			AllSteps.push(allStopOfThisLine[allStopOfThisLine.length - 1])
 		}
+
+		console.log(bestWay[way][1], " : ", AllStops)
 
 		let theTime = new Date(info.date);
 
@@ -82,20 +95,38 @@ async function MainFinder(info){
 				t = t.filter(x => {
 					let deltaT = new Date(x["arrival_time"]);
 					let times = deltaT.getHours() + deltaT.getMinutes() / 60;
-					return (times > theTime.getHours() + theTime.getMinutes() / 60);
+					if (info["isArrivalDepart"]){
+						return (times > theTime.getHours() + theTime.getMinutes() / 60);
+					}
+					else{
+						console.log("THERE")
+						return (times < theTime.getHours() + theTime.getMinutes() / 60);
+					}
 				});
+				let value;
 				if (t.length > 0){
-					let minimDate = new Date(t[0]["arrival_time"])
-					let minimum = [t[0], minimDate.getHours() + minimDate.getMinutes() / 60];
-					for (let timing of t){
-						let theDate = new Date(timing["arrival_time"])
-						if (theDate.getHours() + theDate.getMinutes() / 60 < minimum[1]){
-							minimum = [timing, theDate.getHours() + theDate.getMinutes() / 60];
+					if (info["isArrivalDepart"]){
+						let minimDate = new Date(t[0]["arrival_time"])
+						value = [t[0], minimDate.getHours() + minimDate.getMinutes() / 60];
+						for (let timing of t){
+							let theDate = new Date(timing["arrival_time"])
+							if (theDate.getHours() + theDate.getMinutes() / 60 < value[1]){
+								value = [timing, theDate.getHours() + theDate.getMinutes() / 60];
+							}
 						}
 					}
-					
+					else{
+						let maximumDate = new Date(t[0]["arrival_time"])
+						value = [t[0], maximumDate.getHours() + maximumDate.getMinutes() /60];
+						for (let timing of t){
+							let theDate = new Date(timing["arrival_time"])
+							if (theDate.getHours() + theDate.getMinutes() / 60 < value[1]){
+								value = [timing, theDate.getHours() + theDate.getMinutes() / 60];
+							}
+						}
+					}
 					let last_time = theTime;
-					theTime = new Date(minimum[0]["arrival_time"]);
+					theTime = new Date(value[0]["arrival_time"]);
 
 					resultArr.push({
 						"stop": AllSteps[arr], 
@@ -126,13 +157,23 @@ async function MainFinder(info){
 					if (boole){preview.push(ar.lineTo)}
 				}
 			}
+			let detail = [];
+			for (let arr of resultArr){
+				detail.push({
+					"arrive": arr["arrive"],
+					"depart": arr["depart"],
+					"lineFrom": arr["lineFrom"],
+					"lineTo": arr["lineTo"],
+					"arret": arr["stop"]["arret"]["nom"]
+				});
+			}
 			resultWay = {
 				"departTime": resultArr[0]["depart"],
 				"destinationTime": resultArr[resultArr.length - 1]["arrive"],
 				"stationDepartName": resultArr[0]["stop"]["arret"]["nom"],
 				"stationDestinationName": resultArr[resultArr.length - 1]["stop"]["arret"]["nom"],
 				"previewArray": preview,
-				"detailTravel": resultArr
+				"detailTravel": detail
 			};
 			finalWays.push(resultWay);
 		}
@@ -152,6 +193,7 @@ async function MainFinder(info){
 			finalReturn.push(path)
 		}
 	}
+	console.log(finalReturn);
 	return finalReturn;
 }
 
