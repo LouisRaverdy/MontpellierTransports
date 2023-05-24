@@ -84,6 +84,7 @@ ipc.on('asynchronous-message', (event, arg) => {
         })
         mainWindow.loadFile('./html/index.html')
         attachTitlebarToWindow(mainWindow);
+        if (isDev) mainWindow.webContents.openDevTools()
         mainWindow.webContents.on('did-finish-load', function() {
             setTimeout(function () {
                 mainWindow.show();
