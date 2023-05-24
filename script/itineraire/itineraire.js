@@ -115,7 +115,6 @@ function showPicker(pickerId) {
 
 
 function searchItineraire() {
-	console.log(data_stations[depart_index], " : ", data_stations[destination_index])
 	if (!data_stations[depart_index] && !data_stations[destination_index]){
 		parent.showError("Erreur de saisie", "Les deux arrêts n'ont pas été mentionnés.")
    	}
