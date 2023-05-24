@@ -10,7 +10,7 @@ const isDev = require('electron-is-dev');
 const ipc = require("electron").ipcMain;
 
 setupTitlebar();
-if (isDev) Menu.setApplicationMenu(null)
+if (!isDev) Menu.setApplicationMenu(null)
 let mainWindow;
 
 // Création de la fenêtre de lancement
