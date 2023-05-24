@@ -5,8 +5,9 @@ Montpellier Transports est une application bureau de réseau de transport Montpe
 </br>
 
 <p align="center">
-  <img width="500" height="200" src="https://github.com/LouisRaverdy/MontpellierTransports/assets/47295080/56d54884-4087-4847-8fbb-c821aa385284.png">
+  <img width="712" height="352" src="https://github.com/LouisRaverdy/MontpellierTransports/assets/47295080/6af4b169-11ad-4ef6-bde9-6c0fef0b6d38">
 </p>
+
 
 ## Installation
 
@@ -19,6 +20,10 @@ Pour lancer l'application en mode dev executez la commande :
 ```console
 $ yarn start
 ```
+## Captures d'écran
+
+<img width="1212" alt="Capture d’écran 2023-05-24 à 13 07 50" src="https://github.com/LouisRaverdy/MontpellierTransports/assets/47295080/35e266c2-1629-462e-834d-55893aeb8a42">
+<img width="1212" alt="Capture d’écran 2023-05-24 à 13 09 08" src="https://github.com/LouisRaverdy/MontpellierTransports/assets/47295080/7a138c1a-9eb7-4560-bf77-bcae4f1e4d80">
 
 ## Documentation
 
