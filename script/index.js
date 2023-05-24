@@ -2,7 +2,7 @@
 /*     Fichier Main (Gestion de fenêtres, de communication & mises à jour)    */
 /* -------------------------------------------------------------------------- */
 
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const { autoUpdater } = require("electron-updater");
 const { setupTitlebar, attachTitlebarToWindow } = require("custom-electron-titlebar/main");
 const path = require('path');
@@ -10,6 +10,7 @@ const isDev = require('electron-is-dev');
 const ipc = require("electron").ipcMain;
 
 setupTitlebar();
+Menu.setApplicationMenu(null)
 let mainWindow;
 
 // Création de la fenêtre de lancement
