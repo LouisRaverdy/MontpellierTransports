@@ -10,7 +10,7 @@ const isDev = require('electron-is-dev');
 const ipc = require("electron").ipcMain;
 
 setupTitlebar();
-Menu.setApplicationMenu(null)
+if (isDev) Menu.setApplicationMenu(null)
 let mainWindow;
 
 // Création de la fenêtre de lancement
@@ -84,7 +84,6 @@ ipc.on('asynchronous-message', (event, arg) => {
         })
         mainWindow.loadFile('./html/index.html')
         attachTitlebarToWindow(mainWindow);
-        if (isDev) mainWindow.webContents.openDevTools()
         mainWindow.webContents.on('did-finish-load', function() {
             setTimeout(function () {
                 mainWindow.show();
