@@ -1,7 +1,7 @@
 # Montpellier Transports
 
-Montpellier Transports est une application bureau en cours de développement sur le réseau de transport Montpelliérain. Elle est développé dans le cadre d'un projet de fin d’année de deux étudiants du lycée Georges Clémenceau.
-Une version iOS et aussi en cours de développement. 
+Montpellier Transports est une application de bureau en cours de développement sur le réseau de transport montpelliérain. Elle est développé dans le cadre d'un projet de fin d’année de deux étudiants du lycée Georges Clémenceau.
+Une version iOS est aussi en cours de développement.
 
 </br>
 
@@ -17,7 +17,7 @@ Dans le terminal du projet executez la commande pour installer les dépendances 
 $ yarn
 ```
 
-Pour lancer l'application en mode dev executez la commande : 
+Pour lancer l'application en mode dev executez la commande :
 ```console
 $ yarn start
 ```
@@ -35,11 +35,11 @@ $ yarn start
 - **script/** : Fichiers JavaScript de l'app.
 - **src/** : Ressources nécessaire dans l'app.
 
-Le ficher principal est nommé **index.js** : il y contient la gestion des fenêtres, de mise a jour, et de communication interprocessus.</br>
-Chaque fichier **JS** détient le même nom que son fichier **HTML** associé.
+Le fichier principal est nommé **index.js** : il contient la gestion des fenêtres, des mises à jour et de la communication interprocessus.</br>
+Chaque fichier **JS** a le même nom que son fichier **HTML** associé.
 
 ## L’équipe
-- Louis RAVERDY  - Chargé de développement, développeur et UI/UX designer.
+- Louis RAVERDY  - Chargé de développement, développeur et designer UI/UX.
 - Lucas REVERBEL - Développeur back-end.
 
 </br>
