@@ -1,6 +1,7 @@
 # Montpellier Transports
 
-Montpellier Transports est une application bureau de réseau de transport Montpelliérain développé sur Electron. Elle est développé dans le cadre d'un projet de fin d’année de deux étudiants du lycée Georges Clémenceau.
+Montpellier Transports est une application bureau en cours de développement sur le réseau de transport Montpelliérain. Elle est développé dans le cadre d'un projet de fin d’année de deux étudiants du lycée Georges Clémenceau.
+Une version iOS et aussi en cours de développement. 
 
 </br>
 
