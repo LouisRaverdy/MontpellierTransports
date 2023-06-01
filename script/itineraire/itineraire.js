@@ -82,8 +82,8 @@ function selectStationRaw(id, isStart) {
 }
 
 function arrivalChanged(value) {
-    if (arrivalDepart != value) {
-        arrivalDepart = value
+    if (arrivalDepart != (value.toLowerCase() === 'true')) {
+        arrivalDepart = value.toLowerCase() === 'true'
     }
 }
 
