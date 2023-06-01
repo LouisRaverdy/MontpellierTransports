@@ -19,8 +19,8 @@
     </div>
     <div class="trip-info">
         <select class="arrival-trip-selection" onchange="arrivalChanged(this.value)">
-            <option value="false">Partir le</option>
-            <option value="true">Arriver le</option>
+            <option value="true">Partir le</option>
+            <option value="false">Arriver le</option>
         </select>
         <button class="date-button" onclick="showPicker('date-picker')">
             <input type="date" style="width: 0; height: 0; border: 0; padding-top: 30px;" id="date-picker" oninput="setDate(new Date(this.value))">
