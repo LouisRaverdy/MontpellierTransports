@@ -131,16 +131,21 @@ async function exportTravels() {
                     let travel_data = travels_data.filter(travel_info => travel_info.trip_id == data[travel].trip_id)[0]
 
                     if (!station_ref || !travel_data) continue
+
                     var station_id;
                     if (station_ref.parent_station == "") {
                         station_ref.stop_id
                     } else {
                         station_id = station_ref.parent_station
                     }
+
+                    const arrivalTime = data[travel].arrival_time.split(":");
+                    const departureTime = data[travel].departure_time.split(":");
+
                     if (perfectTravels[station_id] == undefined) {
-                        perfectTravels[station_id] = [{id: data[travel].trip_id, ligne_id: travel_data.route_id, direction_id: travel_data.direction_id, arrival_time: new Date(`2000-01-01T${data[travel].arrival_time}Z`), depart_time: new Date(`2000-01-01T${data[travel].departure_time}Z`)}]
+                        perfectTravels[station_id] = [{id: data[travel].trip_id, ligne_id: travel_data.route_id, direction_id: travel_data.direction_id, arrival_time: new Date(`2000-01-01T${parseInt(arrivalTime[0], 10) > 23 ? "00" : arrivalTime[0]}:${arrivalTime[1]}:${arrivalTime[2]}Z`), depart_time: new Date(`2000-01-01T${parseInt(departureTime[0], 10) > 23 ? "00" : departureTime[0]}:${departureTime[1]}:${departureTime[2]}Z`)}]
                     } else {
-                        perfectTravels[station_id].push({id: data[travel].trip_id, ligne_id: travel_data.route_id, direction_id: travel_data.direction_id, arrival_time: new Date(`2000-01-01T${data[travel].arrival_time}Z`), depart_time: new Date(`2000-01-01T${data[travel].departure_time}Z`)})
+                        perfectTravels[station_id].push({id: data[travel].trip_id, ligne_id: travel_data.route_id, direction_id: travel_data.direction_id, arrival_time: new Date(`2000-01-01T${parseInt(arrivalTime[0], 10) > 23 ? "00" : arrivalTime[0]}:${arrivalTime[1]}:${arrivalTime[2]}Z`), depart_time: new Date(`2000-01-01T${parseInt(departureTime[0], 10) > 23 ? "00" : departureTime[0]}:${departureTime[1]}:${departureTime[2]}Z`)})
                     }
                 }
 
@@ -157,4 +162,4 @@ async function exportTravels() {
 
 //exportStations()
 //exportLignes()
-//exportTravels()
+exportTravels()

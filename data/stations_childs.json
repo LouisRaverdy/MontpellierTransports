@@ -6470,36 +6470,6 @@
     "wheelchair_boarding": 1
   },
   {
-    "stop_id": "S5393",
-    "stop_code": 5393,
-    "stop_name": "Boutonnet - Cité des Arts",
-    "stop_lat": 43.62259098,
-    "stop_lon": 3.868106445,
-    "location_type": 1,
-    "parent_station": "",
-    "wheelchair_boarding": ""
-  },
-  {
-    "stop_id": 1141,
-    "stop_code": 41123,
-    "stop_name": "Boutonnet - Cité des Arts",
-    "stop_lat": 43.62258675,
-    "stop_lon": 3.86808777,
-    "location_type": 0,
-    "parent_station": "S5393",
-    "wheelchair_boarding": 1
-  },
-  {
-    "stop_id": 1176,
-    "stop_code": 41233,
-    "stop_name": "Boutonnet - Cité des Arts",
-    "stop_lat": 43.62259521,
-    "stop_lon": 3.86812512,
-    "location_type": 0,
-    "parent_station": "S5393",
-    "wheelchair_boarding": 1
-  },
-  {
     "stop_id": "S5395",
     "stop_code": 5395,
     "stop_name": "Caducée",
@@ -7343,8 +7313,8 @@
     "stop_id": "S5431",
     "stop_code": 5431,
     "stop_name": "Corum",
-    "stop_lat": 43.61427588,
-    "stop_lon": 3.88192807,
+    "stop_lat": 43.6142813775,
+    "stop_lon": 3.881920795,
     "location_type": 1,
     "parent_station": "",
     "wheelchair_boarding": ""
@@ -7388,16 +7358,6 @@
     "location_type": 0,
     "parent_station": "S5431",
     "wheelchair_boarding": 1
-  },
-  {
-    "stop_id": 10011452,
-    "stop_code": 41131,
-    "stop_name": "Corum",
-    "stop_lat": 43.61425389,
-    "stop_lon": 3.88195717,
-    "location_type": 0,
-    "parent_station": "S5431",
-    "wheelchair_boarding": ""
   },
   {
     "stop_id": "S5433",
@@ -9953,8 +9913,8 @@
     "stop_id": "S5528",
     "stop_code": 5528,
     "stop_name": "Les Aubes",
-    "stop_lat": 43.613828244,
-    "stop_lon": 3.888582482,
+    "stop_lat": 43.6137966025,
+    "stop_lon": 3.888626165,
     "location_type": 1,
     "parent_station": "",
     "wheelchair_boarding": ""
@@ -9998,16 +9958,6 @@
     "location_type": 0,
     "parent_station": "S5528",
     "wheelchair_boarding": 1
-  },
-  {
-    "stop_id": 10012332,
-    "stop_code": 42231,
-    "stop_name": "Les Aubes",
-    "stop_lat": 43.61395481,
-    "stop_lon": 3.88840775,
-    "location_type": 0,
-    "parent_station": "S5528",
-    "wheelchair_boarding": ""
   },
   {
     "stop_id": "S5529",
@@ -10083,8 +10033,8 @@
     "stop_id": "S5532",
     "stop_code": 5532,
     "stop_name": "Louis Blanc - Agora de la Danse",
-    "stop_lat": 43.6147427933333,
-    "stop_lon": 3.87835332333333,
+    "stop_lat": 43.61474115,
+    "stop_lon": 3.87836359,
     "location_type": 1,
     "parent_station": "",
     "wheelchair_boarding": ""
@@ -10108,16 +10058,6 @@
     "location_type": 0,
     "parent_station": "S5532",
     "wheelchair_boarding": 1
-  },
-  {
-    "stop_id": 10011442,
-    "stop_code": 41129,
-    "stop_name": "Louis Blanc - Agora de la Danse",
-    "stop_lat": 43.61474608,
-    "stop_lon": 3.87833279,
-    "location_type": 0,
-    "parent_station": "S5532",
-    "wheelchair_boarding": ""
   },
   {
     "stop_id": "S5533",
@@ -11193,8 +11133,8 @@
     "stop_id": "S5570",
     "stop_code": 5570,
     "stop_name": "Observatoire",
-    "stop_lat": 43.60649526,
-    "stop_lon": 3.87653072666667,
+    "stop_lat": 43.60648325,
+    "stop_lon": 3.876532465,
     "location_type": 1,
     "parent_station": "",
     "wheelchair_boarding": ""
@@ -11218,16 +11158,6 @@
     "location_type": 0,
     "parent_station": "S5570",
     "wheelchair_boarding": 1
-  },
-  {
-    "stop_id": 10012862,
-    "stop_code": 43233,
-    "stop_name": "Observatoire",
-    "stop_lat": 43.60651928,
-    "stop_lon": 3.87652725,
-    "location_type": 0,
-    "parent_station": "S5570",
-    "wheelchair_boarding": ""
   },
   {
     "stop_id": "S5571",
@@ -11793,8 +11723,8 @@
     "stop_id": "S5590",
     "stop_code": 5590,
     "stop_name": "Peyrou - Arc de Triomphe",
-    "stop_lat": 43.611716296,
-    "stop_lon": 3.872282568,
+    "stop_lat": 43.6117936825,
+    "stop_lon": 3.872277225,
     "location_type": 1,
     "parent_station": "",
     "wheelchair_boarding": ""
@@ -11838,16 +11768,6 @@
     "location_type": 0,
     "parent_station": "S5590",
     "wheelchair_boarding": 1
-  },
-  {
-    "stop_id": 10014312,
-    "stop_code": 44103,
-    "stop_name": "Peyrou - Arc de Triomphe",
-    "stop_lat": 43.61140675,
-    "stop_lon": 3.87230394,
-    "location_type": 0,
-    "parent_station": "S5590",
-    "wheelchair_boarding": ""
   },
   {
     "stop_id": "S5591",
@@ -12333,8 +12253,8 @@
     "stop_id": "S5606",
     "stop_code": 5606,
     "stop_name": "Place de l'Europe",
-    "stop_lat": 43.60767453,
-    "stop_lon": 3.89414115666667,
+    "stop_lat": 43.6075713142857,
+    "stop_lon": 3.89409494285714,
     "location_type": 1,
     "parent_station": "",
     "wheelchair_boarding": ""
@@ -12408,26 +12328,6 @@
     "location_type": 0,
     "parent_station": "S5606",
     "wheelchair_boarding": 1
-  },
-  {
-    "stop_id": 1685,
-    "stop_code": 50100,
-    "stop_name": "Place de l'Europe",
-    "stop_lat": 43.60876758,
-    "stop_lon": 3.89467545,
-    "location_type": 0,
-    "parent_station": "S5606",
-    "wheelchair_boarding": ""
-  },
-  {
-    "stop_id": 10011662,
-    "stop_code": 41213,
-    "stop_name": "Place de l'Europe",
-    "stop_lat": 43.60730399,
-    "stop_lon": 3.89393036,
-    "location_type": 0,
-    "parent_station": "S5606",
-    "wheelchair_boarding": ""
   },
   {
     "stop_id": "S5608",
@@ -12583,8 +12483,8 @@
     "stop_id": "S5613",
     "stop_code": 5613,
     "stop_name": "Pompignane",
-    "stop_lat": 43.6125909925,
-    "stop_lon": 3.894949865,
+    "stop_lat": 43.612593195,
+    "stop_lon": 3.89495302,
     "location_type": 1,
     "parent_station": "",
     "wheelchair_boarding": ""
@@ -12608,26 +12508,6 @@
     "location_type": 0,
     "parent_station": "S5613",
     "wheelchair_boarding": 1
-  },
-  {
-    "stop_id": 1699,
-    "stop_code": 42136,
-    "stop_name": "Pompignane",
-    "stop_lat": 43.61245858,
-    "stop_lon": 3.89493697,
-    "location_type": 0,
-    "parent_station": "S5613",
-    "wheelchair_boarding": ""
-  },
-  {
-    "stop_id": 1700,
-    "stop_code": 42232,
-    "stop_name": "Pompignane",
-    "stop_lat": 43.612719,
-    "stop_lon": 3.89495645,
-    "location_type": 0,
-    "parent_station": "S5613",
-    "wheelchair_boarding": ""
   },
   {
     "stop_id": "S5614",
@@ -13293,8 +13173,8 @@
     "stop_id": "S5637",
     "stop_code": 5637,
     "stop_name": "Saint-Éloi",
-    "stop_lat": 43.62666381,
-    "stop_lon": 3.86600661,
+    "stop_lat": 43.626740345,
+    "stop_lon": 3.8658384775,
     "location_type": 1,
     "parent_station": "",
     "wheelchair_boarding": ""
@@ -13320,24 +13200,24 @@
     "wheelchair_boarding": 1
   },
   {
-    "stop_id": 1140,
-    "stop_code": 41121,
-    "stop_name": "Saint-Éloi",
-    "stop_lat": 43.62698962,
-    "stop_lon": 3.86569357,
+    "stop_id": 1701,
+    "stop_code": 41304,
+    "stop_name": "Saint-Éloi CHU",
+    "stop_lat": 43.62858651,
+    "stop_lon": 3.86401606,
     "location_type": 0,
     "parent_station": "S5637",
-    "wheelchair_boarding": 1
+    "wheelchair_boarding": ""
   },
   {
-    "stop_id": 1177,
-    "stop_code": 41235,
-    "stop_name": "Saint-Éloi",
-    "stop_lat": 43.62700724,
-    "stop_lon": 3.86571879,
+    "stop_id": 1702,
+    "stop_code": 41305,
+    "stop_name": "Saint-Éloi Grasset",
+    "stop_lat": 43.62571649,
+    "stop_lon": 3.86672377,
     "location_type": 0,
     "parent_station": "S5637",
-    "wheelchair_boarding": 1
+    "wheelchair_boarding": ""
   },
   {
     "stop_id": "S5638",
@@ -13373,8 +13253,8 @@
     "stop_id": "S5639",
     "stop_code": 5639,
     "stop_name": "Saint-Guilhem - Courreau",
-    "stop_lat": 43.60796181,
-    "stop_lon": 3.87370417,
+    "stop_lat": 43.607957435,
+    "stop_lon": 3.873695805,
     "location_type": 1,
     "parent_station": "",
     "wheelchair_boarding": ""
@@ -13398,16 +13278,6 @@
     "location_type": 0,
     "parent_station": "S5639",
     "wheelchair_boarding": 1
-  },
-  {
-    "stop_id": 10014322,
-    "stop_code": 44104,
-    "stop_name": "Saint-Guilhem - Courreau",
-    "stop_lat": 43.60797056,
-    "stop_lon": 3.8737209,
-    "location_type": 0,
-    "parent_station": "S5639",
-    "wheelchair_boarding": ""
   },
   {
     "stop_id": "S5641",
@@ -18353,8 +18223,8 @@
     "stop_id": "S5837",
     "stop_code": 5837,
     "stop_name": "Albert 1er - Cathédrale",
-    "stop_lat": 43.615082772,
-    "stop_lon": 3.873496554,
+    "stop_lat": 43.615159655,
+    "stop_lon": 3.8734318075,
     "location_type": 1,
     "parent_station": "",
     "wheelchair_boarding": ""
@@ -18395,16 +18265,6 @@
     "stop_name": "Albert 1er - Cathédrale",
     "stop_lat": 43.61556724,
     "stop_lon": 3.8730592,
-    "location_type": 0,
-    "parent_station": "S5837",
-    "wheelchair_boarding": ""
-  },
-  {
-    "stop_id": 10014302,
-    "stop_code": 44102,
-    "stop_name": "Albert 1er - Cathédrale",
-    "stop_lat": 43.61477524,
-    "stop_lon": 3.87375554,
     "location_type": 0,
     "parent_station": "S5837",
     "wheelchair_boarding": ""
@@ -20073,8 +19933,8 @@
     "stop_id": "S5917",
     "stop_code": 5917,
     "stop_name": "Gare Saint-Roch - République",
-    "stop_lat": 43.6053151933333,
-    "stop_lon": 3.87964528666667,
+    "stop_lat": 43.60529725,
+    "stop_lon": 3.87964274,
     "location_type": 1,
     "parent_station": "",
     "wheelchair_boarding": ""
@@ -20098,16 +19958,6 @@
     "location_type": 0,
     "parent_station": "S5917",
     "wheelchair_boarding": 1
-  },
-  {
-    "stop_id": 10012622,
-    "stop_code": 43127,
-    "stop_name": "Gare Saint-Roch - République",
-    "stop_lat": 43.60535108,
-    "stop_lon": 3.87965038,
-    "location_type": 0,
-    "parent_station": "S5917",
-    "wheelchair_boarding": ""
   },
   {
     "stop_id": "S5918",
@@ -20300,6 +20150,36 @@
     "wheelchair_boarding": ""
   },
   {
+    "stop_id": "S5930",
+    "stop_code": 5930,
+    "stop_name": "Boutonnet - Cité des Arts",
+    "stop_lat": 43.62259098,
+    "stop_lon": 3.868106445,
+    "location_type": 1,
+    "parent_station": "",
+    "wheelchair_boarding": ""
+  },
+  {
+    "stop_id": 1141,
+    "stop_code": 41123,
+    "stop_name": "Boutonnet - Cité des Arts",
+    "stop_lat": 43.62258675,
+    "stop_lon": 3.86808777,
+    "location_type": 0,
+    "parent_station": "S5930",
+    "wheelchair_boarding": 1
+  },
+  {
+    "stop_id": 1176,
+    "stop_code": 41233,
+    "stop_name": "Boutonnet - Cité des Arts",
+    "stop_lat": 43.62259521,
+    "stop_lon": 3.86812512,
+    "location_type": 0,
+    "parent_station": "S5930",
+    "wheelchair_boarding": 1
+  },
+  {
     "stop_id": "S5931",
     "stop_code": 5931,
     "stop_name": "Cheng-Du",
@@ -20367,46 +20247,6 @@
     "stop_lon": 3.78930858,
     "location_type": 0,
     "parent_station": "S5933",
-    "wheelchair_boarding": ""
-  },
-  {
-    "stop_id": "S5934",
-    "stop_code": 5934,
-    "stop_name": "Saint-Éloi - CHU",
-    "stop_lat": 43.62858651,
-    "stop_lon": 3.86401606,
-    "location_type": 1,
-    "parent_station": "",
-    "wheelchair_boarding": ""
-  },
-  {
-    "stop_id": 1701,
-    "stop_code": 41304,
-    "stop_name": "Saint-Éloi CHU",
-    "stop_lat": 43.62858651,
-    "stop_lon": 3.86401606,
-    "location_type": 0,
-    "parent_station": "S5934",
-    "wheelchair_boarding": ""
-  },
-  {
-    "stop_id": "S5935",
-    "stop_code": 5935,
-    "stop_name": "Saint-Éloi - Grasset",
-    "stop_lat": 43.62571649,
-    "stop_lon": 3.86672377,
-    "location_type": 1,
-    "parent_station": "",
-    "wheelchair_boarding": ""
-  },
-  {
-    "stop_id": 1702,
-    "stop_code": 41305,
-    "stop_name": "Saint-Éloi Grasset",
-    "stop_lat": 43.62571649,
-    "stop_lon": 3.86672377,
-    "location_type": 0,
-    "parent_station": "S5935",
     "wheelchair_boarding": ""
   }
 ]
