@@ -13,16 +13,17 @@
             </div>
             <div class="top-page-sort">
                 <div class="top-page-sort-text">Trier par :</div>
-                <select class="top-page-sort-selection" id="top-page-dirction-selection" onchange="sortBy(this)">
+                <select class="top-page-sort-selection" id="top-page-dirction-selection" onchange="sortBy(Number(this.value))">
                     <option value="0">Temps de trajet</option>
-                    <option value="1">Heure de départ</option>
-                    <option value="1">Heure d'arivée</option>
+                    <option value="1">Changement de ligne</option>
+                    <option value="2">Heure de départ</option>
+                    <option value="3">Heure d'arivée</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="result-page" id="result-page">
-        <button class="result-child horizontal-container">
+        <button class="result-child-btn horizontal-container">
             <div class="result-child-times vertical-container">
                 <div class="result-child-time">20h32</div>
                 <div class="result-child-time">20h53</div>
@@ -46,6 +47,9 @@
                     <img class="result-child-travel-time-img" src="../../src/chrono.png">
                     <div class="result-child-travel-time-text">21 min.</div>
                 </div>
+            </div>
+            <div class="vertical-container list-details">
+
             </div>
         </button>
     </div>
@@ -79,17 +83,11 @@
         overflow: visible;
         border-radius: 25px;
         background-color: transparent;
-        transition: background-color 0.7s;
     }
 
     .top-page-back-button-image {
         width: 75%;
         height: 75%;
-    }
-
-    svg {
-        color: rgb(var(--text-color));
-        transition: color 0.7s;
     }
 
     .vertical-container {
@@ -178,11 +176,18 @@
 
     .result-child {
         width: calc(100% - 10px);
-        height: 95px;
+        height: auto;
         margin-bottom: 25px;
         margin-right: 10px;
         background-color: #F3F3F8;
         border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .result-child-btn {
+        width: 100%;
+        height: 95px;
+        background-color: transparent;
         border: 0;
         outline: none;
         cursor: pointer;
@@ -208,7 +213,7 @@
 
     .result-child-stations {
         margin-left: 25px;
-        min-width: 120px;
+        width: 140px;
         height: 50%;
         justify-content: space-between;
     }
@@ -226,19 +231,20 @@
 
     .result-child-separator {
         background-color: black;
-        width: 2px;
+        min-width: 2px;
         height: 53%;
+        margin-left: 20px;
     }
 
     .result-child-travel {
         margin-left: 20px;
         height: 60%;
-        width: calc(100% - 252px);
+        width: calc(100% - 272px);
     }
 
     .result-child-travel-preview {
         height: 50%;
-        width: 100%;
+        width: fit-content;
     }
 
     .result-child-step {
@@ -303,6 +309,115 @@
         font-weight: 400;
         font-size: 15px;
     }
+
+    .result-child-detail {
+        width: 100%;
+        height: auto;
+        max-height: 0px;
+        background-color: #f6f9ff;
+        transition: max-height 0.4s;
+    }
+
+    .result-child.expand .result-child-detail {
+        max-height: 10000px;
+    }
+
+    .station-cell {
+        height: 40px;
+        width: 95%;
+        display: inherit;
+        align-items: center;
+        position: relative;
+    }
+
+    .station-cell-route {
+        height: 100%;
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .station-cell-route-rect-top {
+        background-color: rgb(var(--selected-ligne));
+        width: 7px;
+        height: 50%;
+        margin-top: 20px;
+    }
+
+    .station-cell-route-rect-mid {
+        background-color: rgb(var(--selected-ligne));
+        width: 7px;
+        height: 100%;
+    }
+
+    .station-cell-route-rect-bot {
+        background-color: rgb(var(--selected-ligne));
+        width: 7px;
+        height: 50%;
+        margin-bottom: 20px;
+    }
+
+    .station-cell-terminus-mask {
+        width: 25px;
+        height: 25px;
+        background-color: #e7e7f360;
+        border-radius: 13px;
+        position:absolute;
+    }
+
+    .station-cell-dot-mask {
+        width: 11px;
+        height: 11px;
+        background-color: rgb(var(--selected-ligne));
+        border-radius: 13px;
+        position:absolute;
+    }
+
+    .station-cell-terminus {
+        width: 21px;
+        height: 21px;
+        background-color: white;
+        border-radius: 11px;
+        margin:2px;
+    }
+
+    .station-cell-dot {
+        width: 7px;
+        height: 7px;
+        background-color: white;
+        border-radius: 11px;
+        margin-top:2px;
+        margin-left:2px;
+    }
+
+    .station-cell-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 10px;
+        width: calc(100% - 40px);
+        justify-content: space-between;
+    }
+
+    .station-cell-name-dot {
+        font-family: "Inter";
+        font-size: 16px;
+        width: 95%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .station-cell-name-terminus {
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 16px;
+        width: 95%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    } 
 
     
 </style>
